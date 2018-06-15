@@ -1,9 +1,19 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import Header from '../Header';
+import React from "react";
+import { shallow } from "enzyme";
+import Header from "../Header";
 
-it('renders without crashing', () => {
-  const div = document.createElement('div');
-  ReactDOM.render(<Header />, div);
-  ReactDOM.unmountComponentAtNode(div);
+describe("header", function() {
+  let mountedHeader;
+  beforeEach(() => {
+    mountedHeader = shallow(<Header />);
+  });
+
+  it("renders without crashing", () => {
+    shallow(<Header/>)
+  });
+
+    it("renders a logo", () => {
+        const logoImage = mountedHeader.find('img [src="images/wired-brain-coffee-logo.png"]')
+        expect(logoImage.length).toBe(1)
+    });
 });
