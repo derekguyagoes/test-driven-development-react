@@ -20,7 +20,7 @@ describe("StoreLocator", function() {
 
   it("renders two buttons", () => {
     const buttons = mountedStoreLocator.find("Button");
-    expect(buttons.length).toBe(2);
+    expect(buttons.length).toBe(3);
   });
 
   it("renders a map", () => {
@@ -28,3 +28,13 @@ describe("StoreLocator", function() {
     expect(map.length).toBe(1);
   });
 });
+
+describe('chooseMap', () => {
+    it('updates this.sate.currentMap using the location passed to it', () => {
+        let mountedStoreLocator = shallow(<StoreLocator/>)
+        let mockEvent = {target:{value:'testland'}}
+        mountedStoreLocator.instance().chooseMap(mockEvent)
+        expect(mountedStoreLocator.instance().state.currentMap).toBe('testland.png')
+
+    })
+})
